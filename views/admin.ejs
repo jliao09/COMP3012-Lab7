@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <h2>Current Active Sessions:</h2>
+    <ul>
+        <% sessions.forEach(function(session) { %>
+        <li>
+            <%= session.sessionID %>
+        </li>
+        <li>
+            UserID: <%= session.id %>
+        </li>
+        <form action="/admin/revoke" method="post">
+            <input type="hidden" name="sessionId" value="<%= session.sessionID %>" />
+            <button type="submit">Revoke Session</button>
+        </form>
+        <% }); %>
+    </ul>
+</body>
+
+</html>
